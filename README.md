@@ -35,6 +35,19 @@ docker run --rm -it \                                                           
   --network=host \
   sqlpackage-image bash
 ```
+Inside the container, run:
+
+```bash
+sqlpackage /a:Import \
+  /sf:/tmp/your-database.bacpac \
+  /tsn:localhost \
+  /tdn:ImportedDB \
+  /tu:sa \
+  /tp:'YourStrong!Passw0rd' \
+  /ttsc:true
+
+```
+
 🧼 5. Exit and Verify
 
 ***# sql-server-docker
