@@ -1,11 +1,13 @@
+# sql-server-docker
 ## 📁 Project Structure
 
-```pgsql
-docker/
+```text
+sql-server-docker/
 ├── sql-import/
 │   └── your-database.bacpac
-└── sql-package-image/
-    └── Dockerfile
+├── sql-package-image/
+│   └── Dockerfile
+└── sql-server.yml
 ```
 ***
 ✅ 1. Ensure SQL Server is Running in Docker
@@ -14,12 +16,11 @@ Start it:
 docker compose -f sql-server.yml up -d
 ```
 ✅ 2. Prepare .bacpac File
-
-Place your .bacpac file into the docker/sql-import/ directory:
+Place your .bacpac file into the `sql-server-docker/sql-import/` directory:
 
 ✅ 3. Build the Docker image with `sqlpackage`
 ```bash
-cd docker/sql-package-image
+cd sql-package-image
 docker build -t sqlpackage-image .
 ```
 ✅ 4. Run `sqlpackage` Container and Import .bacpac
@@ -36,7 +37,6 @@ docker run --rm -it \                                                           
   sqlpackage-image bash
 ```
 Inside the container, run:
-
 ```bash
 sqlpackage /a:Import \
   /sf:/tmp/your-database.bacpac \
@@ -45,9 +45,6 @@ sqlpackage /a:Import \
   /tu:sa \
   /tp:'YourStrong!Passw0rd' \
   /ttsc:true
-
 ```
-
 🧼 5. Exit and Verify
-
-***# sql-server-docker
+***
